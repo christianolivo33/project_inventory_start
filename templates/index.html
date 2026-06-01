@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Inventory System</h1>
+
+    <form action="/add" method="POST" class="card form-card">
+        <h2>Add Item</h2>
+        <input type="text" name="name" placeholder="Item Name" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="number" step="0.01" name="price" placeholder="Price" required>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <div class="card table-card">
+        <h2>Current Inventory</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Price</th>
+            </tr>
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.price }}</td>
+                <td>
+                 <a class="edit-btn" href="/edit/{{ loop.index0 }}">Edit</a>
+                </td>
+                <td>
+                <form action="/delete/{{ loop.index0 }}" method="POST">
+                <button class="delete-btn">Delete</button>
+                </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+# to hop in download flask
+# open terminal --> python app.py
