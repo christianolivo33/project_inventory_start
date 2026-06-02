@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Add New Item</h2>
+
+<form action="/add" method="POST" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label>Name</label>
+        <input name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Quantity</label>
+        <input name="quantity" type="number" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Price</label>
+        <input name="price" type="number" step="0.01" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Category</label>
+        <select name="category" class="form-control">
+        {% for c in categories %}
+        <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Supplier</label>
+        <input name="supplier" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Reorder Level</label>
+        <input name="reorder_level" type="number" class="form-control" value="0">
+    </div>
+
+    <div class="mb-3">
+        <label>Upload Image</label>
+        <input name="image" type="file" class="form-control">
+    </div>
+
+     <div class="mb-3">
+       <label>SKU</label>
+        <input type="text" name="sku" value="{{ generated_sku }}" readonly>
+
+        <button class="btn btn-primary">Add Item</button>
+    </div>
+
+</form>
+
+{% endblock %}

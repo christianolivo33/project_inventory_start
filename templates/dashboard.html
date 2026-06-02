@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h4>Total Inventory Value</h4>
+            <p class="display-6">${{ total_value }}</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h4>Low Stock Items</h4>
+            <ul>
+                {% for item in low_stock %}
+                <li>{{ item.name }} ({{ item.quantity }} left)</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h4>Items by Category</h4>
+            <ul>
+                {% for cat, count in category_counts.items() %}
+                <li>{{ cat }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

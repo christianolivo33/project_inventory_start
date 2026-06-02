@@ -1,94 +1,244 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
+/* ------------------------------
+   GLOBAL RESET + BASE STYLES
+--------------------------------*/
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
+body {
+    background: #f4f6f9;
     color: #333;
+    padding: 40px 20px;   /* display:flex removed */
 }
 
-.card {
+/* ------------------------------
+   MAIN CONTAINER (CENTERED)
+--------------------------------*/
+.container {
+    width: 100%;
+    max-width: 1100px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin: auto;  /* ensures center alignment */
+}
+
+/* ------------------------------
+   HEADERS
+--------------------------------*/
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* ------------------------------
+   FORMS
+--------------------------------*/
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+input, select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px;
+    background: #0078ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #005fcc;
+}
+
+/* ------------------------------
+   TABLES
+--------------------------------*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #0078ff;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f7ff;
+}
+
+/* ------------------------------
+   IMAGE STYLING
+--------------------------------*/
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ------------------------------
+   BUTTON ROWS
+--------------------------------*/
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-buttons form {
+    margin: 0;
+    width: auto;
+}
+
+/* ------------------------------
+   LOW STOCK BADGE
+--------------------------------*/
+.low-stock {
+    background: #ff4d4d;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ------------------------------
+   DASHBOARD SECTIONS
+--------------------------------*/
+.dashboard-section {
     background: white;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     margin-bottom: 25px;
 }
-
-.form-card input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+/* PAGE WRAPPER: sidebar + content */
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    background: #4a6cf7;
+/* LEFT SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: #1f1f1f;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.delete-btn {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
+.sidebar-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.delete-btn:hover {
-    background: #d93636;
-}
-
-.edit-btn {
-    background: #4caf50;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
+.sidebar-link {
+    color: #ddd;
     text-decoration: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.2s;
 }
 
-.edit-btn:hover {
-    background: #3e8e41;
-}
-
-
-button:hover {
-    background: #3b57d6;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th {
-    background: #4a6cf7;
+.sidebar-link:hover {
+    background: #333;
     color: white;
-    padding: 12px;
 }
 
-td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
+/* MAIN CONTENT AREA */
+.content-area {
+    flex: 1;
+    padding: 20px;
 }
 
-tr:hover {
-    background: #f1f3ff;
+
+
+
+/* SIDEBAR TOGGLE BUTTON */
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #1f1f1f;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* SIDEBAR (default open) */
+.sidebar {
+    width: 200px;
+    background: #1f1f1f;
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+/* SIDEBAR CLOSED (slides left) */
+.sidebar.closed {
+    transform: translateX(-240px);
+}
+
+/* CONTENT AREA SHIFTS WHEN SIDEBAR CLOSES */
+.content-area {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.content-area.shifted {
+    margin-left: -220px;
+}
+/* Sidebar animation */
+.sidebar {
+    transition: transform 0.35s ease-in-out;
+}
+
+/* Content shift animation */
+.content-area {
+    transition: margin-left 0.35s ease-in-out;
+}
+
+/* Toggle button animation */
+.sidebar-toggle {
+    transition: left 0.35s ease-in-out, background 0.2s ease;
 }

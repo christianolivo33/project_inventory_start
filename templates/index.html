@@ -1,50 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inventory System</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 
-<div class="container">
-    <h1>Inventory System</h1>
+<h2 class="mb-3">Inventory</h2>
+<a href="/add-item" class="btn btn-success mb-3">+ Add New Item</a>
 
-    <form action="/add" method="POST" class="card form-card">
-        <h2>Add Item</h2>
-        <input type="text" name="name" placeholder="Item Name" required>
-        <input type="number" name="quantity" placeholder="Quantity" required>
-        <input type="number" step="0.01" name="price" placeholder="Price" required>
-        <button type="submit">Add Item</button>
-    </form>
-
-    <div class="card table-card">
-        <h2>Current Inventory</h2>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Qty</th>
-                <th>Price</th>
-            </tr>
-
-            {% for item in items %}
-            <tr>
-                <td>{{ item.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>${{ item.price }}</td>
-                <td>
-                 <a class="edit-btn" href="/edit/{{ loop.index0 }}">Edit</a>
-                </td>
-                <td>
-                <form action="/delete/{{ loop.index0 }}" method="POST">
-                <button class="delete-btn">Delete</button>
-                </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+<form class="row mb-3">
+    <div class="col-md-4">
+        <input name="search" class="form-control" placeholder="Search items...">
     </div>
-</div>
+    <div class="col-md-3">
+        <select name="sort" class="form-control">
+            <option value="name">Sort by Name</option>
+            <option value="quantity">Sort by Quantity</option>
+            <option value="price">Sort by Price</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100">Apply</button>
+    </div>
+</form>
 
-</body>
-</html>
+<h5>Total Inventory Value: <strong>${{ total_value }}</strong></h5>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Supplier</th>
+            <th>Reorder Level</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.sku }}</td>
+            <td><a href="/item/{{ item.id }}">{{ item.name }}</a></td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.price }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.supplier }}</td>
+            <td>{{ item.reorder_level }}</td>
+            <td><img src="{{ item.image_url }}" width="50"></td>
+
+            <td>
+                <a href="/edit/{{ item.id }}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="/delete/{{ item.id }}" method="POST" style="display:inline;">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

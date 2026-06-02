@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Item Details</h2>
+
+<div class="card" style="max-width: 600px; margin: auto;">
+
+    {% if item.image_url %}
+    <div style="text-align:center;">
+        <img src="/static/uploads/{{ item.image_url }}" 
+             style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+    </div>
+    {% endif %}
+
+    <h3 style="text-align:center; margin-top:15px;">{{ item.name }}</h3>
+
+    <p><strong>SKU:</strong> {{ item.sku }}</p>
+    <p><strong>Category:</strong> {{ item.category }}</p>
+    <p><strong>Supplier:</strong> {{ item.supplier }}</p>
+    <p><strong>Stock:</strong> {{ item.quantity }}</p>
+    <p><strong>Reorder Level:</strong> {{ item.reorder_level }}</p>
+    <p><strong>Price:</strong> ${{ item.price }}</p>
+
+    <div style="margin-top:20px; text-align:center;">
+        <a href="/edit/{{ item.id }}" class="btn btn-success">Edit Item</a>
+        <a href="/" class="btn btn-secondary">Back to Inventory</a>
+    </div>
+
+</div>
+
+{% endblock %}

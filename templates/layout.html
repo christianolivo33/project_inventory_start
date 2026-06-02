@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory System</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="bg-light">
+
+<button id="sidebarToggle" class="sidebar-toggle">☰</button>
+
+<div class="page-wrapper">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <h3 class="sidebar-title">Menu</h3>
+
+        <a class="sidebar-link" href="/">Inventory</a>
+        <a class="sidebar-link" href="/dashboard">Dashboard</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content-area">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+</div>
+
+<!-- JAVASCRIPT MUST BE AT THE BOTTOM -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("sidebarToggle").addEventListener("click", function () {
+        const sidebar = document.getElementById("sidebar");
+        const content = document.querySelector(".content-area");
+
+        sidebar.classList.toggle("closed");
+        content.classList.toggle("shifted");
+    });
+});
+</script>
+
+</body>
+</html>
